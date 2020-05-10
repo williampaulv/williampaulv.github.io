@@ -1,540 +1,94 @@
 <!DOCTYPE html>
-<html lang="en" >
-<head>
-  <meta charset="UTF-8">
-  <title>Twitch Social Popup</title>
-  <style>
-    #popup-container {
-      width: 470px;
-      height: 60px;
-      position: absolute;
-      top: 0;
-      left: 0;
-      overflow: hidden;
-    }
+<html>
+    <head>
+        
+        <script async src="//pagead2.googlesyndication.com/pagead/js/adsbygoogle.js"></script>
+<script>
+  (adsbygoogle = window.adsbygoogle || []).push({
+    google_ad_client: "ca-pub-9557839575577384",
+    enable_page_level_ads: true
+  });
+</script>
+        
+        <title>Fortnite Assessment</title>
+        <link rel="shortcut icon" type="image/png" href="Favicon.ico">
+        
+        <style>
 
-    .popup {
-      width: 470px;
-      height: 60px;
-      background: #fff;
-      display: none;
-    }
-    .popup .left {
-      position: relative;
-      height: 60px;
-      width: 60px;
-      float: left;
-    }
-    .popup .left span:before {
-      font-size: 40px;
-      line-height: 60px;
-      width: 60px;
-      height: 60px;
-      content: "";
-      display: block;
-      text-align: center;
-      color: #FFF;
-    }
-    .popup .left .twitter:before {
-      background: #4b9bd8 url("http://nerdordie.com/wp-content/uploads/2015/11/twitter.png") no-repeat 10px 10px;
-    }
-    .popup .left .facebook:before {
-      background: #3a5795 url("http://nerdordie.com/wp-content/uploads/2015/11/facebook.png") no-repeat 10px 10px;
-    }
-    .popup .left .instagram:before {
-      background: #44749c url("http://nerdordie.com/wp-content/uploads/2015/11/instagram.png") no-repeat 10px 10px;
-    }
-    .popup .left .youtube:before {
-      background: #ec2727 url("http://nerdordie.com/wp-content/uploads/2015/11/youtube.png") no-repeat 10px 10px;
-    }
-    .popup .left .paypal:before {
-      background: #005082 url("http://nerdordie.com/wp-content/uploads/2015/11/paypal.png") no-repeat 10px 10px;
-    }
-    .popup .left .twitch:before {
-      background: #6542a6 url("http://nerdordie.com/wp-content/uploads/2015/11/twitch.png") no-repeat 10px 10px;
-    }
-    .popup .left .tumblr:before {
-      background: #324f6d url("http://nerdordie.com/wp-content/uploads/2015/11/tumblr.png") no-repeat 10px 10px;
-    }
-    .popup .left .patreon:before {
-      background: #e6461a url("http://nerdordie.com/wp-content/uploads/2015/11/patreon.png") no-repeat 10px 10px;
-    }
-    .popup .left .snapchat:before {
-      background: #fffc00 url("http://nerdordie.com/wp-content/uploads/2015/11/snapchat.png") no-repeat 10px 10px;
-    }
-    .popup .left .steam:before {
-      background: #000 url("http://nerdordie.com/wp-content/uploads/2015/11/steam.png") no-repeat 10px 10px;
-    }
-    .popup .left .xbox:before {
-      background: #117d10 url("http://nerdordie.com/wp-content/uploads/2015/11/xbox.png") no-repeat 10px 10px;
-    }
-    .popup .left .psn:before {
-      background: #0b266b url("http://nerdordie.com/wp-content/uploads/2015/11/psn.png") no-repeat 10px 10px;
-    }
-    .popup .left .origin:before {
-      background: #f05a22 url("http://nerdordie.com/wp-content/uploads/2015/11/origin.png") no-repeat 10px 10px;
-    }
-    .popup .left .uplay:before {
-      background: #4891cb url("http://nerdordie.com/wp-content/uploads/2015/11/uplay.png") no-repeat 10px 10px;
-    }
-    .popup .left .nintendo:before {
-      background: #f68b33 url("http://nerdordie.com/wp-content/uploads/2016/03/nintendo.png") no-repeat 10px 10px;
-    }
-    .popup .left .battlenet:before {
-      background: #000001 url("http://nerdordie.com/wp-content/uploads/2016/03/battlenet.png") no-repeat 10px 10px;
-    }
-    .popup .left .deviantart:before {
-      background: #05cc47 url("http://nerdordie.com/wp-content/uploads/2016/03/deviantart.png") no-repeat 10px 10px;
-    }
-    .popup .left .reddit:before {
-      background: #ffffff url("http://nerdordie.com/wp-content/uploads/2016/03/reddit.png") no-repeat 10px 10px;
-    }
-    .popup .left .gamewisp:before {
-      background: #f8a853 url("http://nerdordie.com/wp-content/uploads/2016/03/gamewisp.png") no-repeat 10px 10px;
-    }
-    .popup .left .playstv:before {
-      background: #35373b url("http://nerdordie.com/wp-content/uploads/2016/03/playstv.png") no-repeat 10px 10px;
-    }
-    .popup .right {
-      position: relative;
-      height: 60px;
-      width: 400px;
-      float: left;
-      color: #101010;
-      padding-left: 10px;
-      font-size: 30px;
-      line-height: 60px;
-      white-space: nowrap;
-      font-family: 'Montserrat';
-      animation: popup-text 2s 1 ease-out;
-      -webkit-animation: popup-text 2s 1 ease-out;
-    }
-    .popup .right span {
-      white-space: nowrap;
-    }
-    @keyframes popup-text {
-      0% {
-        color: rgba(16, 16, 16, 0);
-        text-indent: -10px;
-      }
-      40% {
-        color: rgba(16, 16, 16, 0);
-        text-indent: -10px;
-      }
-      50% {
-        color: #101010;
-        text-indent: 0px;
-      }
-      100% {
-        color: #101010;
-        text-indent: 0px;
-      }
-    }
-    @-webkit-keyframes popup-text {
-      0% {
-        color: rgba(16, 16, 16, 0);
-        text-indent: -10px;
-      }
-      40% {
-        color: rgba(16, 16, 16, 0);
-        text-indent: -10px;
-      }
-      50% {
-        color: #161010;
-        text-indent: 0px;
-      }
-      100% {
-        color: #101010;
-        text-indent: 0px;
-      }
-    }
-    .show-popup {
-      display: block;
-      animation: popup 1s 1 ease-out;
-      -webkit-animation: popup 1s 1 ease-out;
-    }
+            .infobutton{width: 150px; height: 150px; color: rgba(255,255,255,1); font-weight: 800; transition: transform .2s; margin: 0 auto;}
+            .infobutton:hover{-ms-transform: scale(1.5); -webkit-transform: scale(1.5); transform: scale(1.2);}
+            .center1{margin-left:auto; margin-right:auto;}
+            .center{margin: auto;width: 60% ; border: 3px solid #F7FF01; padding: 10px; background-color: rgba(0,0,0,0.5)}
+            
+            #logo{height: 18%; width: 18%; display: block; float: right}
+            #item{height: 15%; width: 15%; display: block; margin-left: auto; margin-right: auto;}
+            #ranking{height: 17.5%; width: 17.5%; border-radius: 10px;display: block; margin-left: auto; margin-right: auto;}
+            #scar{background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0)), url(scar.png); background-size: cover;}
+            #ar{background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0)), url(ar.png); background-size:cover;}
+            #burst{background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0)), url(burst.png); background-size:cover;}
+            #heavy{background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0)), url(heavy.png); background-size: cover;}
+            #tac{background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0)), url(tactical.png); background-size:cover;}
+            #pump{background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0)), url(pump.png); background-size: cover;}
+            #rocket{background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0)),url(rocket.png); background-size: cover;}
+            #bolt{background-image: linear-gradient(rgba(0,0,0,0.5),rgba(0,0,0,0)), url(bolt.png); background-size: cover;}
+            #hunting{background-image: linear-gradient(rgba(0,0,0,0.5), rgba(0,0,0,0)), url(hunting.png); background-size: cover;}
+          
+            body{background: url(background.jpg) no-repeat center center fixed; -webkit-background-size: cover; -moz-background-size: cover; -o-background-size: cover; background-size: cover;}
+            h{font-family: monospace; font-weight: 800; color: rgba(255,255,255,1); font-size: 50px; border-bottom: 3px solid white;
+  display: inline;}
+            p{font-family: monospace; font-weight: 300; color: rgba(255,255,255,1); font-size: 20px;}
+            
+            
+            
+            
+        </style>
+        
+    </head>
+    <body>
+        
+        <img src="logo.png" id="logo">
 
-    @keyframes popup {
-      0% {
-        width: 60px;
-        margin-top: -10px;
-        opacity: 0;
-      }
-      20% {
-        width: 60px;
-        margin-top: 0px;
-        opacity: 1;
-      }
-      45% {
-        width: 470px;
-      }
-      100% {
-        width: 470px;
-      }
-    }
-    @-webkit-keyframes popup {
-      0% {
-        width: 60px;
-        margin-top: -10px;
-        opacity: 0;
-      }
-      20% {
-        width: 60px;
-        margin-top: 0px;
-        opacity: 1;
-      }
-      45% {
-        width: 470px;
-      }
-      100% {
-        width: 470px;
-      }
-    }
-    .no-popup {
-      display: none !important;
-    }
-  </style>
-</head>
-<body>
-<!-- partial:index.partial.html -->
-<link href='https://fonts.googleapis.com/css?family=Montserrat:700' rel='stylesheet' type='text/css'> 
-<div id="popup-container">
-   <div class="popup twitter-pop" data-box="enableTwitter">
-     <div class="left">
-       <span class="twitter"></span>
-     </div>
-     <div class="right twitterUsername">
-       <span data-name="twitterUsername"></span>
-     </div>
-   </div>
-   <div class="popup facebook-pop" data-box="enableFacebook">
-     <div class="left">
-       <span class="facebook"></span>
-     </div>
-     <div class="right facebookUsername">
-       <span data-name="facebookUsername"></span>
-     </div>
-   </div>
-   <div class="popup instagram-pop" data-box="enableInstagram">
-     <div class="left">
-       <span class="instagram"></span>
-     </div>
-     <div class="right instagramUsername">
-       <span data-name="instagramUsername"></span>
-     </div>
-   </div> 
-   <div class="popup youtube-pop" data-box="enableYoutube">
-     <div class="left">
-       <span class="youtube"></span>
-     </div>
-     <div class="right youtubeUsername">
-       <span data-name="youtubeUsername"></span>
-     </div>
-   </div>
-   <div class="popup tumblr-pop" data-box="enableTumblr">
-     <div class="left">
-       <span class="tumblr"></span>
-     </div>
-     <div class="right tumblrUsername">
-       <span data-name="tumblrUsername"></span>
-     </div>
-   </div>
-   <div class="popup twitch-pop" data-box="enableTwitch">
-     <div class="left">
-       <span class="twitch"></span>
-     </div>
-     <div class="right twitchUsername">
-       <span data-name="twitchUsername"></span>
-     </div>
-   </div>
-   <div class="popup paypal-pop" data-box="enablePaypal">
-     <div class="left">
-       <span class="paypal"></span>
-     </div>
-     <div class="right paypalUsername">
-       <span data-name="paypalUsername"></span>
-     </div>
-   </div>
-   <div class="popup patreon-pop" data-box="enablePatreon">
-     <div class="left">
-       <span class="patreon"></span>
-     </div>
-     <div class="right patreonUsername">
-       <span data-name="patreonUsername"></span>
-     </div>
-   </div>
-  <div class="popup snapchat-pop" data-box="enableSnapchat">
-     <div class="left">
-       <span class="snapchat"></span>
-     </div>
-     <div class="right snapchatUsername">
-       <span data-name="snapchatUsername"></span>
-     </div>
-   </div>
-  <div class="popup steam-pop" data-box="enableSteam">
-     <div class="left">
-       <span class="steam"></span>
-     </div>
-     <div class="right steamUsername">
-       <span data-name="steamUsername"></span>
-     </div>
-   </div>
-  <div class="popup xbox-pop" data-box="enableXbox">
-     <div class="left">
-       <span class="xbox"></span>
-     </div>
-     <div class="right xboxUsername">
-       <span data-name="xboxUsername"></span>
-     </div>
-   </div>
-  <div class="popup psn-pop" data-box="enablePsn">
-     <div class="left">
-       <span class="psn"></span>
-     </div>
-     <div class="right psnUsername">
-       <span data-name="psnUsername"></span>
-     </div>
-   </div>
-   <div class="popup origin-pop" data-box="enableOrigin">
-     <div class="left">
-       <span class="origin"></span>
-     </div>
-     <div class="right originUsername">
-       <span data-name="originUsername"></span>
-     </div>
-   </div>
-  <div class="popup uplay-pop" data-box="enableUplay">
-     <div class="left">
-       <span class="uplay"></span>
-     </div>
-     <div class="right uplayUsername">
-       <span data-name="uplayUsername"></span>
-     </div>
-   </div>
-   <div class="popup nintendo-pop" data-box="enableNintendo">
-     <div class="left">
-       <span class="nintendo"></span>
-     </div>
-     <div class="right nintendoUsername">
-       <span data-name="nintendoUsername"></span>
-     </div>
-   </div>
-  <div class="popup battlenet-pop" data-box="enableBattleNet">
-     <div class="left">
-       <span class="battlenet"></span>
-     </div>
-     <div class="right battlenetUsername">
-       <span data-name="battlenetUsername"></span>
-     </div>
-   </div>
-  <div class="popup deviantart-pop" data-box="enableDeviantArt">
-     <div class="left">
-       <span class="deviantart"></span>
-     </div>
-     <div class="right deviantartUsername">
-       <span data-name="deviantartUsername"></span>
-     </div>
-   </div>
-  <div class="popup reddit-pop" data-box="enableReddit">
-     <div class="left">
-       <span class="reddit"></span>
-     </div>
-     <div class="right redditUsername">
-       <span data-name="redditUsername"></span>
-     </div>
-   </div>
-  <div class="popup gamewisp-pop" data-box="enableGameWisp">
-     <div class="left">
-       <span class="gamewisp"></span>
-     </div>
-     <div class="right gamewispUsername">
-       <span data-name="gamewispUsername"></span>
-     </div>
-   </div>
-  <div class="popup playstv-pop" data-box="enablePlaysTv">
-     <div class="left">
-       <span class="playstv"></span>
-     </div>
-     <div class="right playstvUsername">
-       <span data-name="playstvUsername"></span>
-     </div>
-   </div>
-</div>
-<!-- partial -->
-  <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.10.2/jquery.min.js'></script>
-  <script>
-    var settings = {
-
-      // Simply change the name in quotes with your name
-      social: {
-
-        // Twitch Name
-        twitchUsername: "VizWizJiz",
-
-        // Twitter Name
-        twitterUsername: "williampaulv",
-
-        // Facebook Name
-        facebookUsername: "william.viziteu",
-
-        // Instagram Name
-        instagramUsername: "william_viziteu",
-
-        // Youtube Name
-        youtubeUsername: "VizWizJiz",
-
-        // Snapchat Name
-        snapchatUsername: "thehackermania",
-
-         // Steam Name
-        steamUsername: "VizWizJiz",
-
-         // Xbox Name
-        xboxUsername: "VizWiz2004",
-
-         // Playstation Network Name
-        psnUsername: "VizWiz2004",
-
-      },
-
-      // Gaming Popup Options
-      popup: {
-
-        // This is where you enable or disable networks
-        // 1 means enabled, 0 means disabled
-
-        // Enable Twitter
-        enableTwitter: 1,
-
-        // Enable Facebook
-        enableFacebook: 0,
-
-        // Enable Instagram
-        enableInstagram: 1,
-
-        // Enable YouTube
-        enableYoutube: 1,
-
-        // Enable Tumblr
-        enableTumblr: 0,
-
-        // Enable Twitch
-        enableTwitch: 1,
-
-        // Enable PayPal
-        enablePaypal: 0,
-
-         // Enable Patreon
-        enablePatreon: 0,
-
-        // Enable Snapchat
-        enableSnapchat: 1,
-
-        // Enable Steam
-        enableSteam: 1,
-
-        // Enable Xbox
-        enableXbox: 1,
-
-        // Enable Playstation Network
-        enablePsn: 1,
-
-         // Enable Origin Network
-        enableOrigin: 0,
-
-        // Enable Uplay Network
-        enableUplay: 0,
-
-        // Enable Nintendo Network
-        enableNintendo: 0,
-
-        // Enable Battle Net Network
-        enableBattleNet: 0,
-
-        // Enable Deviant Art Network
-        enableDeviantArt: 0,
-
-        // Enable Reddit Network
-        enableReddit: 0,
-
-        // Enable Game Wisp Network
-        enableGameWisp: 0,
-
-        // Enable Plays TV Network
-        enablePlaysTv: 0,
-
-
-        //
-        // Times to update
-        //
-
-        // Time each network animation takes in second
-        aTime: 5,
-
-        // The delay for the animation cycle to restart in seconds
-        pauseTime: 0
-      }
-    };
-
-    // You're all done
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    //
-    // No need to go any further!
-
-    // Load Social Network Names
-    $( ".popup .right span" ).each(function() {
-        var socialName = settings.social[$(this).data('name')];
-        $(this).append( socialName );
-    });
-
-    // Load Social Popup
-    $(".popup").each(function() {
-      var supporterEnable = settings.popup[$(this).data('box')],
-        boxName = $(this).data('box');
-
-      if (supporterEnable == 1) {
-        $('input[name=' + boxName + ']').prop('checked', true);
-        $(this).addClass("animate-popup");
-      } else if (supporterEnable === 0) {
-        $('input[name=' + boxName + ']').prop('checked', false);
-        $(this).addClass("no-popup");
-      } else {
-        return false;
-      }
-    });
-
-    // Animate Popup
-
-    var popups = $('.animate-popup');
-    var i = 0;
-    var pT = settings.popup.pauseTime * 1000;
-
-    function animatePopup() {
-      if (i >= popups.length) {
-        i = 0;
-      }
-      popups.eq(i).addClass("show-popup")
-        .delay(settings.popup.aTime * 1000)
-        .queue(function() {
-          $(this).removeClass("show-popup");
-          $(this).dequeue();
-          if (i == popups.length) {
-            setTimeout(animatePopup, pT);
-          } else {
-            animatePopup();
-          }
-        });
-      i++;
-    }
-    animatePopup();
+        <div class="center">
+            
+            <img src="Item.png" id="item">
+            <table class="center1">
+                
+                <tr>
+                    <td><input type="button" value="SCAR" onclick="scarScript()" class="infobutton" id="scar"></td>
+                    <td><input type="button" value="AR" onclick="arScript()" class="infobutton" id="ar"></td>
+                    <td><input type="button" value="Burst-AR" onclick="burstScript()" class="infobutton" id="burst"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="Heavy Shotgun" onclick="heavyScript()" class="infobutton" id="heavy"></td>
+                    <td><input type="button" value="Tactical Shotgun" onclick="tacScript()" class="infobutton" id="tac"></td>
+                    <td><input type="button" value="Pump Shotgun" onclick="pumpScript()" class="infobutton" id="pump"></td>
+                </tr>
+                <tr>
+                    <td><input type="button" value="Rocket Launcher" onclick="rocketScript()" class="infobutton" id="rocket"></td>
+                    <td><input type="button" value="Bolt-Action Sniper" onclick="boltScript()" class="infobutton" id="bolt"></td>
+                    <td><input type="button" value="Hunting Rifle" onclick="huntingScript()" class="infobutton" id="hunting"></td>
+                </tr>
+            </table>
+            
+            <img src="rank.png" id="ranking">
+            
+            <h>Info:</h>
+            <p>Fortnite Battle Royale is a free-to-play battle royale game developed and published by Epic Games. It was released as an early access title for Microsoft Windows, macOS, PlayStation 4, Xbox One in September 2017, and for iOS in April 2018, with plans for an Android version at a later date. It is a spin-off from Epic's Fortnite, a cooperative survival game with construction elements.</p>
+        
+        </div>
+        <script>
+            
+            function scarScript(){alert("The Epic/Legendary SCAR is a Weapon in Fortnite Battle Royale.")}
+            function arScript(){alert("The Common/Uncommon/Rare Assault Rifle is a Weapon in Fortnite Battle Royale.")}
+            function burstScript(){alert("The Common/Uncommon/Rare Burst-Assault Rifle is a Weapon in Fortnite Battle Royale.")}
+            function heavyScript(){alert("The Epic/Legendary Heavy Shotgun is a Weapon in Fortnite Battle Royale.")}
+            function tacScript(){alert("The Common/Uncommon/Rare Tactical Shotgun is a Weapon in Fortnite Battle Royale.")}
+            function pumpScript(){alert("The Uncommon/Rare Pump Shotgun is a Weapon in Fortnite Battle Royale.")}
+            function rocketScript(){alert("The Rare/Epic/Legendary Rocket Launcher is a Weapon in Fortnite Battle Royale.")}
+            function boltScript(){alert("The Rare/Epic/Legendary Bolt-Action Sniper is a Weapon in Fortnite Battle Royale.")}
+            function huntingScript(){alert("The Uncommon/Rare Hunting Rifle is a Weapon in Fortnite Battle Royale.")}
+        
+        </script>
+    </body>
     
-  </script>
-
-</body>
 </html>
